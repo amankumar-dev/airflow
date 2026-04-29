@@ -1,0 +1,30 @@
+Why Airflow?
+-> Workflow as code: You define pipelines using python (DAG)
+-> Scheduling & Dependency Management: It understands task dependencies
+-> Centralized Orchestration: One platform control everthing (DGs, APIs, Spark, etc)
+-> Monitoring & UI: It has a built in web UI where we can see pipeline status, Debug failures, Trigger runs manually.
+Airflow is used because it makes complex, scheduled, multistep workflow reliable, observation and maintanable.
+
+What Airflow?
+.Aparche Airflow is an open source tool used to scheduler, manage, and automate workflows especially data pipeline.
+.Imagine we have to data pipeline: 
+    Get data from API -> Clean the data -> Store in DB -> Generate report
+.Instead of running it manually airflow lets us: 
+    -> Define all steps
+    -> set order (who runs first)
+    -> Automate execution
+
+Componenet of Airflow?
+-> The metadata DB: kya hua, Kb hua, Kya status hai ka pura record. It's a database (usually postgreSQL or MySQL) where airflow stores everthing about your workflows, not the actual data.
+-> The Scheduler: The componenet that decides what to run, when to run, and in what order.
+-> The DAG file processor: Wo componenet jo tumahara DAG python files ko read krke unhey airflow ko samajhne layak format me convert krta hai 
+-> The Executor: Wo componenet jo tasks ko actually run krta hai 
+-> The API Server: It proveds endpoints for task operations and serving the UI
+-> The Queue: Tis is list of tasks waiting to be executed.
+-> The Trigger: Ti is responsible for managing deferrable tasks - tasks that wait for external events.
+
+Core Concepts: 
+-> DAG: Directed \Acylic Graphs is a collection of all the tasks you want to run, organized in a way that reflects their dependencies.
+-> Operator: DAG told tat what to do in complete process but operator also inform what to do but only in each steps.
+-> Task: Operator ko actual running instance. Operator kya kaam krna hai task jb wo kaam actually run hota hai.
+-> Workflow: It is the entire process defined by your DAG, including all tasks and their dependencies.
