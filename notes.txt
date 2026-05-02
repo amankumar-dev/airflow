@@ -28,3 +28,32 @@ Core Concepts:
 -> Operator: DAG told tat what to do in complete process but operator also inform what to do but only in each steps.
 -> Task: Operator ko actual running instance. Operator kya kaam krna hai task jb wo kaam actually run hota hai.
 -> Workflow: It is the entire process defined by your DAG, including all tasks and their dependencies.
+
+Single node Archtitecture?
+It means that all firflow componenets run on one single machine (one server or VM). In single node architecure, the following componenets all run to the same system:
+-> Webserver: UI for monitoring DAGs
+-> Scheduleer: Decides when taksk should run
+-> Executor: Executes tasks( usually swquental Executor or LocalExecutor)
+-> Metadata DG: Often SQLite or locak postgreSQL-> Worker: If lockaexectuor is used, worker run on the same node.
+
+Multi node Architeture?
+Ishmey bs ye hota hai multiple node hotey hai aur availability key hisaab se harr componenet ko alag alag node assign kia jata hai.
+
+View of Airlfor UI?
+-> Home view: Jaha tumaharey saarey DAGs ek jagah list hotey hai  + unka status dikhta hai.
+    Heasth: Shows the helath of componenet of airflow i.e. MetaDB, Scheduler, Trigger
+    LInks: Give redirect link for failed DAGs, Running DAGs, Active DAGs
+    History: Show the histor performed of DAGs
+    Task Instance: Harr task ka execution reocord (kb run hua, kya status hai)
+    Asset event: Data (asset ) key update honey ya change honey ka record.
+-> DAGs View: Wo page jaha tumahrey saarey DAGs list hotey hai + unka overall status dikhta hai.
+    DAG ID: workflow ka naam
+    Owner: kishney bnaya/ maintain kr raha hai
+    Schedule: Daily / hourly / cron
+    Last Run: las t baar kb run hua
+    Next run: Next scheuldre runstatus indicator: Red, Yellow, green
+    Pause/ Unpause toggle: Enable / disable
+-> Asset view: jahan tumarey data resoverces (tables / files) honey
+    Name: Asset ka naam
+    Group: Logical grouping 
+    Consuming DAG: Konsa DAG is DAta ko use kr raha hai. 
