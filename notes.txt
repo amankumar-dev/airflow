@@ -162,5 +162,38 @@ When task dependent on each other then flow of task can be fixed by airflow auto
         )
     )
 
-## For example check dag program to understands ##
+## Check dag program to understands ##
 
+Creating DAGs with Asset?
+-> Asset: Data (table/ file) jo DAG produce ya consume krta hai.
+-> Asset based DAG: Data change hone pr DAG trigger hota hai (time pe nhi)
+    A -> B - output ...> file - triggers ...> C -> DAG
+
+Create a Asset?
+from airflow.sdk import asset
+@asset(schedule="@daily")
+def user():
+    import requests
+    return requests.get("https://randomuser.me/api/").json()
+
+Materialize the Asset?
+Ush Asset ko actually create / update krna.
+
+Create dependency with another asset?
+@asset(schedule=[user])
+def user_location(user_data):
+    return user_data['results'][0]['location']
+
+Creating Multiple assets?
+Rather than creating multiple assets seperately we can create multiple asset in single asset
+    @asset.multi(
+    schedule=[user],
+    outlets=["user_location", "user_login"]
+    )
+    def user_info(user_data):
+        result = user_data['results'][0]
+
+        return {
+            "user_location": result['location'],
+            "user_login": result['login']
+        }
