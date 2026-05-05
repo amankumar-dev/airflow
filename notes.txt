@@ -197,3 +197,48 @@ Rather than creating multiple assets seperately we can create multiple asset in 
             "user_location": result['location'],
             "user_login": result['login']
         }
+
+Executor?
+It is the componenet that decides how and where tasks are run.
+-> Types of Airflow executor:-
+    > SequentailExecutor: Runs one task ata time> LocalExecutor: Runtasks in parallel on a single machine.
+    > CeleryExecutor: Use celery workers and a message broker.
+    > KubernenetesExecutor: Each taks runs in its own kubernetes pod.
+
+Airflow with celery?
+Industry me Airflow + Celery almost hamesha Docker (docker-compose) se run hota hai.
+-> Steps:-
+    > folder structure:
+        airflow-docker/
+            ├── dags/
+            ├── logs/
+            ├── plugins/
+            ├── docker-compose.yml
+            └── .env
+    > .env file:
+        AIRFLOW_IMAGE_NAME=apache/airflow:2.9.0
+        AIRFLOW_UID=50000
+    > docker-compose.yml:
+        Check Chatgpt
+    > Run everything:
+        docker-compose up airflow-init
+        docker-compose up
+    > Access:
+        Airflow UI → http://localhost:8080
+        Flower (workers monitor) → http://localhost:5555
+    > Login
+        username: admin
+        password: admin
+
+Flower?
+It is an opern sourceweb application for monitoring and managing celelry clusters. It provides real time information about the status of celery workers and tasks.
+
+Queue?
+Ye decide kerta hai taks kaha jayega, worker decide krta hai konsa task uthaaega.
+-> command: celery-worker -q high_cpu
+    Create worker which tak task only from high cpu queue
+-> @task(queue='high_cpu)
+    Ye task ka category define kr dia ki ye task high cpu queue mai jaaega.
+-> From where queue got created then
+    It will be auto created when we use name of queue redi make it for us. 
+
