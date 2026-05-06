@@ -242,3 +242,19 @@ Ye decide kerta hai taks kaha jayega, worker decide krta hai konsa task uthaaega
 -> From where queue got created then
     It will be auto created when we use name of queue redi make it for us. 
 
+Task Group?
+Task ka logical grouping (Sirf UI + Organization ke liye)
+-> Purpose: UI clean rakhna [Extract](fetch, convert)-> [Transform](clean,change)-> [Load](write,insert)
+
+Xcomm?
+Cross communication (tasks key beech data share karney ka machanishm)
+-> xComArg: x=a() yaha x xcomarg hai kyuki x represent krta hai a key output ko.
+-> Automatic xcom: return 10 //Push, b(10) //Pull
+-> Mannual xcom:Context['ti'].xcom_push(key='x),value=10
+                Context['ti'].xcom_pull(task_ids='a')
+
+Run task based on condition?
+-> Branching: To get feature like if and else we use Branching.
+    @task.branch
+-> Short circuit: It will terminate all the task further if condition false.
+    @task.short_circuit
