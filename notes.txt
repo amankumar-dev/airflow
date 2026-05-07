@@ -258,3 +258,6 @@ Run task based on condition?
     @task.branch
 -> Short circuit: It will terminate all the task further if condition false.
     @task.short_circuit
+
+
+============= Completed Airflow with basics for advanced check other courses ==================================================
