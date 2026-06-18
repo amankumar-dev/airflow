@@ -1,0 +1,56 @@
+1. How can Airflow run my entire pipeline automatically every day?
+-> I define my workflow, dependencies and schedule in DAG and then scheduler will conitniously scan DAG and if it got any task need to be run then it will create DAG Run after that that task will go to the executor and they will work on them accordingly.
+
+2. What is a DAG?
+-> It's stands for Directed Acylic Graphs basically the collection of task and their dependencies which confirm the workflow of the pipeline.
+
+3. Why do Data Engineers use DAGs instead of a single Python script?
+-> We use DAG's because it's provide the Orchestration, scheduling, monitoring, failure handling and more which make industry level data pipeline efficiently and automated. 
+
+4. What is the d/f b/w pythonOperator and bashoperator?
+-> pythonOperator executes python code within airflow while bashoperator executes shell command or script of operating system. 
+
+5. How do task dependencies work?
+-> Using >> and << operator
+    extract >> silver >> gold >> analytics >> reports
+    reports << analytics << gold << silver << extract
+
+6. How can I schedule DAGs?
+-> DAGs can be schedule by passing the parameters schedule into DAGs function. i.e. schedule='@hourly'
+
+7. Should Gold load run if Silver load fails?
+-> No, it's should not run if silver load failed because gold data depends on silver data. It's automatically handled by all_success trigger of airflow.
+
+8. How can Airflow stop the DAG when data validation fails?
+-> If it's failed then validation task marked as failed hence all downstream task will not run and ultimately, DAG becomes failed because it's not complete it's execution.
+
+9. How can I make a DAG rerun automatically after failure?
+-> By setting the retries and retry delay.
+
+10. How can I rerun only one failed task instead of the entire pipeline?
+-> 
+
+11. How can I prevent duplicate loads?
+
+12. How can Airflow check if today's raw file exists before running Silver?
+
+13. How can Airflow wait for an upstream dependency?
+
+14. How can Airflow validate row counts?
+
+15. How can Airflow verify Gold tables were loaded successfully?
+
+16. How can Airflow send alerts when a task fails?
+
+17. How would you trigger your DAG manually?
+
+18. How would you pass parameters to DAGs?
+
+19. How would you backfill historical data?
+
+20. How would you process only incremental records instead of full load?
+
+21. How would you run PySpark jobs from Airflow?
+
+22. What is Orchestration?
+-> It's basically like the law of airflow which makes sure that all the task should run in defined order with managing their dependencies. 
