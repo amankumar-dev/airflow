@@ -28,29 +28,43 @@
 -> By setting the retries and retry delay.
 
 10. How can I rerun only one failed task instead of the entire pipeline?
--> 
+->  Airflow tracks all task status and if any task got failed i can clearly rerun or clear that task from airflow UI, API, CLI.
 
 11. How can I prevent duplicate loads?
+->  Airflow doesn't have any feature to get know that yes that's duplicated data so i will not insert it. It all depends on your schema design and db constraints like pk,fk and more.
 
 12. How can Airflow check if today's raw file exists before running Silver?
+->  It can be done by sensor in airflow which check the existince of file if it's not then downstream task will not run.
 
 13. How can Airflow wait for an upstream dependency?
+->  By defining task dependency operator << , >>
 
 14. How can Airflow validate row counts?
+->  It also done by pythonOperator and sql 
 
 15. How can Airflow verify Gold tables were loaded successfully?
+->  It all store in the status of task if it shows success then it loaded successfully and if you want to know all data loaded succ for that you have to define validation again
 
 16. How can Airflow send alerts when a task fails?
+->  Airflow sends alerts when any task failed as mail,messages or any other communication tool like slack
 
 17. How would you trigger your DAG manually?
+->  We can trigger DAG manually by UI,CLI, or API
 
 18. How would you pass parameters to DAGs?
+->  It can be pass through DAG run configuration dag_run.conf
 
 19. How would you backfill historical data?
+->  It can be done by manual trigger or CLI
 
 20. How would you process only incremental records instead of full load?
+->  It can be track by via timestamp, watermark or batch id 
 
 21. How would you run PySpark jobs from Airflow?
+->  It can be done by sparkSubmitOperator
 
 22. What is Orchestration?
 -> It's basically like the law of airflow which makes sure that all the task should run in defined order with managing their dependencies. 
+
+23. What is sensor?
+->  Sensor is like waiting point i.e. downstream task will executes only if time or condition will match the sensor criteria
